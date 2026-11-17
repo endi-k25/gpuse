@@ -1,7 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // -------------------------------------------------------------
-  // 1. Update Header for Logged-In User
-  // -------------------------------------------------------------
   const currentUser = JSON.parse(localStorage.getItem('gpuse_current_user') || 'null');
   const headerNav = document.querySelector('header.nav');
   const actionBtn = headerNav ? headerNav.querySelector('a.btn') : null;
@@ -26,18 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // -------------------------------------------------------------
-  // 2. Select Elements
-  // -------------------------------------------------------------
   const tableWrap = document.querySelector('.table-wrap');
   const table = tableWrap ? tableWrap.querySelector('table') : null;
   const actionsWrap = document.querySelector('.actions');
   const emptyPanel = document.querySelector('.panel.empty');
   const downloadBtn = actionsWrap ? actionsWrap.querySelectorAll('a.btn')[0] : null;
 
-  // -------------------------------------------------------------
-  // 3. Initialize & Retrieve Jobs from localStorage
-  // -------------------------------------------------------------
   let jobs = JSON.parse(localStorage.getItem('gpuse_jobs') || 'null');
 
   // Seed default jobs if never saved before
@@ -52,9 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('gpuse_jobs', JSON.stringify(jobs));
   }
 
-  // -------------------------------------------------------------
-  // 4. Render Table or Empty State
-  // -------------------------------------------------------------
   function renderJobs() {
     const currentJobs = JSON.parse(localStorage.getItem('gpuse_jobs') || '[]');
 
@@ -103,9 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
     table.innerHTML = colgroup + headerRow + rowsHtml;
   }
 
-  // -------------------------------------------------------------
-  // 5. Simulate "Running" Job Transition to "Done"
-  // -------------------------------------------------------------
   function checkRunningJobs() {
     const currentJobs = JSON.parse(localStorage.getItem('gpuse_jobs') || '[]');
     let updated = false;
@@ -125,9 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // -------------------------------------------------------------
-  // 6. Handle "Download last result"
-  // -------------------------------------------------------------
   if (downloadBtn) {
     downloadBtn.addEventListener('click', (e) => {
       e.preventDefault();
